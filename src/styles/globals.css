@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-primary: #6366f1;
+  --color-brand-secondary: #ec4899;
+  --color-background: #020617;
+  --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
+}
+
+/* Base refinement */
+body {
+  background-color: var(--color-background);
+  color: #f8fafc;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* The "Winner" Button Style */
+.btn-primary {
+  @apply bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3 rounded-2xl 
+         font-bold transition-all shadow-glow hover:scale-[1.02] active:scale-95;
+}
+
+/* Glassmorphism for the Sidebars */
+.glass-panel {
+  @apply bg-slate-900/80 backdrop-blur-xl border border-slate-800/50;
+}
