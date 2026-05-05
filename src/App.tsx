@@ -1,8 +1,8 @@
-import ClientPortal from './ClientPortal'; // Make sure the path is correct
+import ClientPortal from './ClientPortal';
 
 function App() {
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-black flex items-center justify-center p-4">
       <ClientPortal />
     </div>
   );
