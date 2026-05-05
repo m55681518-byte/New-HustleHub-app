@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { CheckCircle2, Loader2 } from 'lucide-react';
-import { initiateSTKPush } from '../lib/mpesa';
+import { initiateSTKPush } from './lib/mpesa';
 
 const ClientPortal = () => {
   const [isPaid, setIsPaid] = useState(false);
