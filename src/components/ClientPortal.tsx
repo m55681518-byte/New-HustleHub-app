@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import { CheckCircle2, Clock, CreditCard, ShieldCheck } from 'lucide-react';
+import { CheckCircle2, Clock, CreditCard, ShieldCheck, Loader2 } from 'lucide-react';
+import { initiateSTKPush } from '../lib/mpesa'; // Import the function we built
 
 const ClientPortal = () => {
   const [isPaid, setIsPaid] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const milestones = [
     { id: 1, title: 'Project Discovery', status: 'complete', date: 'May 1, 2026' },
@@ -10,6 +12,31 @@ const ClientPortal = () => {
     { id: 3, title: 'Development & API Integration', status: 'current', date: 'June 1, 2026' },
     { id: 4, title: 'Final Deployment', status: 'pending', date: 'June 15, 2026' },
   ];
+
+  const handlePayment = async () => {
+    setLoading(true);
+    try {
+      // Using the test number you provided from the Sandbox
+      const phoneNumber = "254740149004"; 
+      const amount = 1;
+
+      const result = await initiateSTKPush(phoneNumber, amount);
+
+      if (result.ResponseCode === "0") {
+        alert("STK Push Sent! Check your phone to enter your M-Pesa PIN.");
+        // We set paid to true only after the user actually finishes the PIN prompt
+        // For now, we'll simulate the completion for the UI
+        setIsPaid(true);
+      } else {
+        alert("Error: " + result.ResponseDescription);[cite: 2]
+      }
+    } catch (error) {
+      console.error("Payment Error:", error);
+      alert("Failed to connect to Safaricom. Check your Vercel Environment Variables.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="max-w-5xl mx-auto p-4 md:p-10 bg-slate-950 rounded-3xl border border-slate-800 shadow-2xl overflow-hidden">
@@ -50,16 +77,22 @@ const ClientPortal = () => {
               <div className="flex items-center gap-2 text-xs text-slate-400"><ShieldCheck size={14} className="text-emerald-500" /> Secure Encryption</div>
             </div>
             <button 
-              onClick={() => setIsPaid(true)}
-              disabled={isPaid}
+              onClick={handlePayment}
+              disabled={isPaid || loading}
               className={`w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 transition-all transform active:scale-95 ${
                 isPaid ? 'bg-emerald-500 text-white cursor-default' : 'bg-white text-slate-950 hover:bg-slate-200 shadow-lg shadow-white/5'
-              }`}
+              } ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
-              {isPaid ? 'Payment Received' : <><CreditCard size={18} /> Pay Invoice</>}
+              {loading ? (
+                <Loader2 className="animate-spin" size={18} />
+              ) : isPaid ? (
+                'Payment Received'
+              ) : (
+                <><CreditCard size={18} /> Pay via M-Pesa</>
+              )}
             </button>
             <p className="text-[10px] text-center text-slate-500 mt-4 px-4 leading-relaxed">
-              Payments processed via Stripe.
+              Payments securely processed via M-Pesa Sandbox.
             </p>
           </div>
         </div>
