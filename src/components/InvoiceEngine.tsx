@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { FileText, Download, Send, Plus, Trash2 } from 'lucide-react';
+import { useState } from 'react';
+import { FileText, Download, Send, Plus } from 'lucide-react';
 
 interface InvoiceItem {
   id: string;
@@ -14,7 +14,7 @@ const InvoiceEngine = () => {
   ]);
 
   const subtotal = items.reduce((acc, item) => acc + (item.quantity * item.rate), 0);
-  const tax = subtotal * 0.1; // 10% tax logic
+  const tax = subtotal * 0.1;
   const total = subtotal + tax;
 
   const addItem = () => {
@@ -23,12 +23,10 @@ const InvoiceEngine = () => {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 animate-in fade-in duration-500">
-      {/* EDITOR SIDE */}
       <div className="bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-2xl">
         <h3 className="text-lg font-bold mb-6 flex items-center gap-2">
           <FileText className="text-indigo-400" /> Invoice Editor
         </h3>
-        
         <div className="space-y-4">
           {items.map((item) => (
             <div key={item.id} className="flex gap-4 items-end bg-slate-950/50 p-4 rounded-xl border border-slate-800">
@@ -71,16 +69,10 @@ const InvoiceEngine = () => {
             </div>
           ))}
         </div>
-
-        <button 
-          onClick={addItem}
-          className="mt-6 flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-white transition-colors"
-        >
+        <button onClick={addItem} className="mt-6 flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-white transition-colors">
           <Plus size={16} /> Add Line Item
         </button>
       </div>
-
-      {/* LIVE PREVIEW SIDE (The "Winner" UI) */}
       <div className="bg-white text-slate-950 p-10 rounded-2xl shadow-2xl shadow-indigo-500/5 min-h-[500px] flex flex-col">
         <div className="flex justify-between items-start mb-12">
           <div>
@@ -92,7 +84,6 @@ const InvoiceEngine = () => {
             <div className="text-sm text-slate-500">{new Date().toLocaleDateString()}</div>
           </div>
         </div>
-
         <div className="flex-grow">
           <table className="w-full text-left">
             <thead>
@@ -113,29 +104,14 @@ const InvoiceEngine = () => {
             </tbody>
           </table>
         </div>
-
         <div className="mt-8 pt-8 border-t-2 border-slate-100 space-y-2">
-          <div className="flex justify-between text-slate-500">
-            <span>Subtotal</span>
-            <span>${subtotal.toLocaleString()}</span>
-          </div>
-          <div className="flex justify-between text-slate-500">
-            <span>Tax (10%)</span>
-            <span>${tax.toLocaleString()}</span>
-          </div>
-          <div className="flex justify-between text-xl font-black pt-4">
-            <span>Total Due</span>
-            <span className="text-indigo-600">${total.toLocaleString()}</span>
-          </div>
+          <div className="flex justify-between text-slate-500"><span>Subtotal</span><span>${subtotal.toLocaleString()}</span></div>
+          <div className="flex justify-between text-slate-500"><span>Tax (10%)</span><span>${tax.toLocaleString()}</span></div>
+          <div className="flex justify-between text-xl font-black pt-4"><span>Total Due</span><span className="text-indigo-600">${total.toLocaleString()}</span></div>
         </div>
-        
         <div className="mt-10 flex gap-3">
-          <button className="flex-grow py-3 bg-slate-950 text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-800 transition-all">
-            <Download size={18} /> Download PDF
-          </button>
-          <button className="flex-grow py-3 bg-indigo-600 text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-indigo-500 transition-all">
-            <Send size={18} /> Send to Client
-          </button>
+          <button className="flex-grow py-3 bg-slate-950 text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-800 transition-all"><Download size={18} /> Download PDF</button>
+          <button className="flex-grow py-3 bg-indigo-600 text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-indigo-500 transition-all"><Send size={18} /> Send to Client</button>
         </div>
       </div>
     </div>
