@@ -18,7 +18,6 @@ const ClientPortal = () => {
     try {
       const phoneNumber = "254740149004";
       const amount = 1;
-
       const result = await initiateSTKPush(phoneNumber, amount);
 
       if (result.ResponseCode === "0") {
@@ -63,14 +62,12 @@ const ClientPortal = () => {
             ))}
           </div>
         </div>
-
         <div className="w-full md:w-80 shrink-0">
           <div className="bg-slate-900 p-8 rounded-2xl border border-slate-800">
             <div className="mb-6">
               <span className="text-[10px] uppercase font-black tracking-widest text-indigo-400">Current Balance</span>
               <div className="text-4xl font-black text-white mt-1">$3,250.00</div>
             </div>
-            
             <button 
               onClick={handlePayment}
               disabled={isPaid || loading}
