@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { LayoutDashboard, PieChart, Receipt, Target, Globe, Settings } from 'lucide-react';
-import InvoiceEngine from './components/InvoiceEngine';
 import ClientPortal from './ClientPortal';
 import ScopingTool from './components/ScopingTool';
 
@@ -52,6 +51,7 @@ const MainDashboard = () => {
           <p className="text-slate-400 mt-1">Real-time business intelligence for May 2026.</p>
         </div>
         <div className="transition-all duration-300">
+          {activeTab === 'invoices' && <div className="text-white">Invoicing Feature Coming Soon</div>}
           {activeTab === 'pipeline' && <div className="text-white text-xl">Welcome to HustleHub Pipeline</div>}
           {activeTab === 'scoping' && <ScopingTool />}
           {activeTab === 'portal' && <ClientPortal />}
