@@ -62,12 +62,14 @@ const ClientPortal = () => {
             ))}
           </div>
         </div>
+
         <div className="w-full md:w-80 shrink-0">
           <div className="bg-slate-900 p-8 rounded-2xl border border-slate-800">
             <div className="mb-6">
               <span className="text-[10px] uppercase font-black tracking-widest text-indigo-400">Current Balance</span>
               <div className="text-4xl font-black text-white mt-1">$3,250.00</div>
             </div>
+            
             <button 
               onClick={handlePayment}
               disabled={isPaid || loading}
@@ -77,9 +79,6 @@ const ClientPortal = () => {
             >
               {loading ? <Loader2 className="animate-spin" size={18} /> : isPaid ? 'Payment Received' : 'Pay via M-Pesa'}
             </button>
-            <p className="text-[10px] text-center text-slate-500 mt-4 leading-relaxed">
-              Payments securely processed via M-Pesa Sandbox.
-            </p>
           </div>
         </div>
       </div>
