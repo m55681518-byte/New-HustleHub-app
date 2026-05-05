@@ -1,11 +1,7 @@
-import ClientPortal from './ClientPortal';
+import MainDashboard from './MainDashboard';
 
 function App() {
-  return (
-    <div className="min-h-screen bg-black flex items-center justify-center p-4">
-      <ClientPortal />
-    </div>
-  );
+  return <MainDashboard />;
 }
 
 export default App;
