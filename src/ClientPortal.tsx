@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CheckCircle2, Clock, CreditCard, ShieldCheck, Loader2 } from 'lucide-react';
+import { CheckCircle2, Loader2 } from 'lucide-react';
 import { initiateSTKPush } from '../lib/mpesa';
 
 const ClientPortal = () => {

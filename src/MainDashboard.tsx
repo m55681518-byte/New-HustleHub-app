@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { LayoutDashboard, PieChart, Receipt, Target, Globe, Settings } from 'lucide-react';
 import PipelineEngine from './App';
 import InvoiceEngine from './components/InvoiceEngine';
-import ClientPortal from './components/ClientPortal';
+import ClientPortal from './ClientPortal';
 import ScopingTool from './components/ScopingTool';
 
 const MainDashboard = () => {
