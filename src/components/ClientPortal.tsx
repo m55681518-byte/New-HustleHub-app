@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { CheckCircle2, Clock, CreditCard, ShieldCheck, Loader2 } from 'lucide-react';
-import { initiateSTKPush } from '../lib/mpesa'; //
+import { initiateSTKPush } from '../lib/mpesa';
 
 const ClientPortal = () => {
   const [isPaid, setIsPaid] = useState(false);
@@ -16,7 +16,7 @@ const ClientPortal = () => {
   const handlePayment = async () => {
     setLoading(true);
     try {
-      const phoneNumber = "254740149004"; //
+      const phoneNumber = "254740149004";
       const amount = 1;
 
       const result = await initiateSTKPush(phoneNumber, amount);
@@ -80,7 +80,7 @@ const ClientPortal = () => {
             >
               {loading ? <Loader2 className="animate-spin" size={18} /> : isPaid ? 'Payment Received' : 'Pay via M-Pesa'}
             </button>
-            <p className="text-[10px] text-center text-slate-500 mt-4">
+            <p className="text-[10px] text-center text-slate-500 mt-4 leading-relaxed">
               Payments securely processed via M-Pesa Sandbox.
             </p>
           </div>
